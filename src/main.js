@@ -56,8 +56,8 @@ function analyzeSalesData(data, options) {
   // Проверка наличия опций
   const { calculateRevenue, calculateBonus } = options;
   if (
-    !typeof calculateRevenue === "function" ||
-    !typeof calculateBonus === "function"
+    !(typeof calculateRevenue === "function") ||
+    !(typeof calculateBonus === "function")
   ) {
     throw new Error("Чего-то не хватает");
   }
@@ -104,7 +104,7 @@ function analyzeSalesData(data, options) {
         seller.products_sold[item.sku] = 0;
       }
       // По артикулу товара увеличить его проданное количество у продавца
-      seller.products_sold[item.sku] += 1;
+      seller.products_sold[item.sku] += item.quantity;
     });
   });
   // Сортировка продавцов по прибыли
